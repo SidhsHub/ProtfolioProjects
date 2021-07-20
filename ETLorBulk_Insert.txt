@@ -1,0 +1,28 @@
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Nashville_Housing_Data.csv'
+INTO TABLE housing
+FIELDS 
+	terminated by ','
+	enclosed by '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(@v1, @v2, @v3, @v4, @v5, @v6, @v7, @v8, @v9, @v10, @v11, @v12, @v13, @v14, @v15, @v16, @v17, @v18, @v19)
+SET
+UniqueID = IF(@v1 = ‘’, NULL, @v1),
+ParcelID = IF(@v2 = ‘’, NULL, @v2),
+LandUse = IF(@v3 = ‘’, NULL, @v3),
+PropertyAddress = IF(@v4 = ‘’, NULL, @v4),
+SaleDate = IF(@v5 = ‘’, NULL, @v5),
+SalePrice = IF(@v6 = ‘’, NULL, @v6),
+LegalReference = IF(@v7 = ‘’, NULL, @v7),
+SoldAsVacant = IF(@v8 = ‘’, NULL, @v8),
+OwnerName = IF(@v9 = ‘’, NULL, @v9),
+OwnerAddress = IF(@v10 = ‘’, NULL, @v10),
+Acreage = IF(@v11 = ‘’, NULL, @v11),
+TaxDistrict = IF(@v12 = ‘’, NULL, @v12),
+LandValue = IF(@v13 = ‘’, NULL, @v13),
+BuildingValue = IF(@v14 = ‘’, NULL, @v14),
+TotalValue = IF(@v15 = ‘’, NULL, @v15),
+YearBuilt = IF(@v16 = ‘’, NULL, @v16),
+Bedrooms = IF(@v17 = ‘’, NULL, @v17),
+FullBath = IF(@v18 = ‘’, NULL, @v18),
+HalfBath = IF(@v19 = ‘’, NULL, @v19)
