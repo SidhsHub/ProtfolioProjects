@@ -113,7 +113,7 @@ SELECT
 FROM
     titles
 WHERE
-    title LIKE ('%engineer%') OR ('%senior engineer%');
+    title =  ('engineer' OR 'senior engineer');
     
 /*
 Create a procedure that asks you to insert an employee number and that will obtain an output containing the same number, 
@@ -151,14 +151,13 @@ How many contracts have been registered in the ‘salaries’ table with duratio
 Hint: You may wish to compare the difference between the start and end date of the salaries contracts.
 */
 
-select * from salaries;
-
 SELECT 
-    count(emp_no)
+    emp_no
 FROM
-    salaries
-WHERE
-    DATEDIFF(to_date, from_date) > 365
+    employees.salaries
+GROUP BY emp_no
+HAVING 
+	SUM(DATEDIFF(to_date, from_date)) < 365);
 AND
 	salary >= 100000;
     
