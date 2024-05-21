@@ -24,6 +24,7 @@ ORDER BY c_year;
 
 /*
 Compare the number of male managers to the number of female managers from different departments for each year, starting from 1990.
+Also check manager was active or not for every year present in the database 
 */
 
 SELECT 
