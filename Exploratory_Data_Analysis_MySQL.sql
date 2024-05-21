@@ -151,15 +151,17 @@ How many contracts have been registered in the ‘salaries’ table with duratio
 Hint: You may wish to compare the difference between the start and end date of the salaries contracts.
 */
 
+with cte as
+(
 SELECT 
-    emp_no
-FROM
-    employees.salaries
-GROUP BY emp_no
-HAVING 
-	SUM(DATEDIFF(to_date, from_date)) < 365);
-AND
-	salary >= 100000;
+            count(distinct emp_no) as cnt
+        FROM
+            employees.salaries
+        GROUP BY emp_no
+        HAVING SUM(DATEDIFF(to_date, from_date)) > 365
+            AND MAX(salary) > 100000 
+            )
+select sum(cnt) as no_of_contracts from cte
     
 # Define a function that retrieves the largest contract salary value of an employee. Apply it to employee number 11356. 
 # Also, what is the lowest salary value per contract of the same employee? You may want to create a new function that will deliver this number to you.  Apply it to employee number 11356 again.
